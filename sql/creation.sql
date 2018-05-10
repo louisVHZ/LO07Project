@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS `Utilisateur` (
   `email` VARCHAR(100) NULL,
   `motdepasse` VARCHAR(45) NULL,
   `admin` TINYINT(1) NULL CHECK VALUE IN (0, 1),
+  `remember_token` VARCHAR(100) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC))
 ENGINE = InnoDB;

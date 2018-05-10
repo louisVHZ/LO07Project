@@ -15,6 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/Authentification', function () {
-    return view('authentification');
-});
+/* Page d'authentification */
+Route::get('/authentification', 'AuthentificationController@get');
+Route::post('/authentification', 'AuthentificationController@post');
+
+/* Exemple de route */
+Route::get('article/{n}', function($n) { 
+    return view('article')->with('numero', $n); 
+})->where('n', '[0-9]+');
+
+/* Authentification laravel */
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
