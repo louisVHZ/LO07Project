@@ -22,10 +22,10 @@ CREATE TABLE IF NOT EXISTS `users` (
   `ville` VARCHAR(45) NULL,
   `codePostal` INT(5) NULL,
   `photo` VARCHAR(45) NULL,
-  `tel` INT(10) NULL,
+  `tel` VARCHAR(10) NULL,
   `email` VARCHAR(100) NULL,
   `password` VARCHAR(64) NULL,
-  `admin` TINYINT(1) NULL CHECK VALUE IN (0, 1),
+  `admin` TINYINT(1) NULL CHECK VALUE IN (0, 1) DEFAULT '0',
   `remember_token` VARCHAR(100) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC))

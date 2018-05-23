@@ -43,9 +43,16 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+            'prenom' => 'required|string|max:255',
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            'rue' => 'required|string|max:255',
+            'ville' => 'required|string|max:255',
+            'codePostal' => 'required|integer',
+            'tel' => 'required|string|max:10',
+            'dateDeNaissance' => 'required|date',
             'password' => 'required|string|min:6|confirmed',
+            'photo' => 'image|mimes:jpg,png,jpeg,gif,svg',
         ]);
     }
 
@@ -57,10 +64,37 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        
         return User::create([
+            'prenom' => $data['prenom'],
             'name' => $data['name'],
             'email' => $data['email'],
+            'rue' => $data['rue'],
+            'ville' => $data['ville'],
+            'codePostal' => $data['codePostal'],
+            'tel' => $data['tel'],
+            'dateDeNaissance' => $data['dateDeNaissance'],
             'password' => Hash::make($data['password']),
+            'photo' => $this->photoUpload($data),
         ]);
+    }
+
+    /**
+     * Upload a photo
+     *
+     * @param  array $data
+     * @return $name of the photo
+     */
+    protected function photoUpload(array $data) 
+    {
+        if ($data[hasFile('photo')]) {
+            $image = $data->file('photo');
+            $name = $image->getClientOriginalExtension();
+            $destinationPath = public_path('/img');
+            $image->move($destinationPath, $name);
+            $this->save();
+
+            return $name;
+        }
     }
 }

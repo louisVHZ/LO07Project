@@ -19,9 +19,7 @@ Route::get('article/{n}', function($n) {
 */
 
 /*** VISITEUR ***/
-Route::get('/', function() {
-	return view('welcome');
-})->middleware('guest');
+Route::get('/', 'GuestController@index');
 
 
 /*** AUTHENTIFICATION ***/
@@ -32,9 +30,11 @@ Auth::routes();
 Route::group(['middleware' => 'web'], function () {
 
 	// Accueil
-	Route::get('/accueil', function() {
+	/*Route::get('/accueil', function() {
 		return view('home');
-	})->middleware('auth');
+	})->middleware('auth');*/
+
+	Route::get('/accueil', 'AccueilController@index');
 
 });
 
