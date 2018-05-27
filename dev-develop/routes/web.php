@@ -30,11 +30,10 @@ Auth::routes();
 Route::group(['middleware' => 'web'], function () {
 
 	// Accueil
-	/*Route::get('/accueil', function() {
-		return view('home');
-	})->middleware('auth');*/
-
 	Route::get('/accueil', 'AccueilController@index');
+
+	//Admin dashboard
+	Route::get('/admin', 'AdminController@index');
 
 });
 
