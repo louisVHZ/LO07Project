@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use \App\User;
 
 
 class AdminController extends Controller
@@ -25,8 +26,10 @@ class AdminController extends Controller
      */
     public function index()
     {
+        $data = User::all();
+
         if(Auth::user()->isAdmin()) {
-            return view('admin');
+            return view('admin')->with('users', $data);
         }
         
     }
