@@ -33,7 +33,7 @@ Route::group(['middleware' => 'web'], function () {
 	Route::get('/accueil', 'AccueilController@index');
 
 	//Admin dashboard
-	Route::get('/admin', 'AdminController@index');
+	Route::get('/admin/dashboard', 'AdminController@dashboard');
 
 });
 

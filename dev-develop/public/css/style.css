@@ -1,0 +1,64 @@
+nav {
+	font-size: 20px;
+}
+
+#navbarNav {
+	width: 100%;
+	text-align: center;
+}
+
+#navbarNav > ul {
+	float: right;
+}
+
+#navbarNav > ul li {
+	margin-right: 20px;
+}
+
+a.button {
+    background-color: #039BE5;
+    border-radius: 5px;
+    color: white !important;
+}
+
+a.button:hover {
+    background-color: #039BE5;
+    border-radius: 5px;
+    color: #01579B !important;
+}
+
+#welcome {
+	background-image: url('../img/nanny.jpg');
+	background-color: transparent;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	height: 500px;
+	position: fixed;
+	opacity: 0.8;
+
+	-webkit-filter: blur(3px);
+  	-moz-filter: blur(3px);
+  	-o-filter: blur(3px);
+  	-ms-filter: blur(3px);
+  	filter: blur(3px);
+}
+
+div h1 {
+	z-index: 9999;
+	padding-top: 200px;
+	text-align: center;
+	font-size: 50px;
+	font-weight: lighter;
+	color: black;
+	height: 500px;
+
+}
+
+.hidden {
+	display: none;
+}
+
+#presentation {
+	margin-top: 100px;
+	text-align: center;
+}
