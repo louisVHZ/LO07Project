@@ -20,17 +20,30 @@ class AdminController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Show the dashboard of the admin.
      *
      * @return \Illuminate\Http\Response
      */
     public function dashboard()
     {
+        if(Auth::user()->isAdmin()) {
+            return view('admin.dashboard');
+        } else {
+            return 'pas admin';
+        }
+    }
+
+    /**
+     * Show the users of the app.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function users()
+    {
         $data = User::all();
 
         if(Auth::user()->isAdmin()) {
-            return view('admin')->with('users', $data);
+            return view('admin.users')->with('users', $data);
         }
-        
     }
 }

@@ -24,6 +24,7 @@ Route::get('/', 'GuestController@index');
 
 /*** AUTHENTIFICATION ***/
 Auth::routes();
+Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
 
 /*** MAIN APP ***/
@@ -32,9 +33,12 @@ Route::group(['middleware' => 'web'], function () {
 	// Accueil
 	Route::get('/accueil', 'AccueilController@index');
 
-	//Admin dashboard
+	// Admin
 	Route::get('/admin/dashboard', 'AdminController@dashboard');
+	Route::get('/admin/users', 'AdminController@users')->name('admin/users');
 
 });
+
+
 
 

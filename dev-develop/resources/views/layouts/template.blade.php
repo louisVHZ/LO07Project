@@ -10,9 +10,42 @@
 	    <title>@yield('title')</title>
 	</head>
 	<body>
+
+		<nav class="navbar navbar-expand-lg navbar-light navbar-fixed-top">
+	    	<a class="navbar-brand" href="/">Nounou</a>
+	      	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="navbar-toggler-icon"></span>
+	      	</button>
+	      	<div id="navbarNav">
+	        	<ul class="navbar-nav">
+
+				<!-- Authentication Links -->
+		        @guest
+		            <li><a class="nav-link" href="{{ route('login') }}">Connexion</a></li>
+		            <li><a class="nav-link button" href="{{ route('register') }}">Inscription</a></li>
+		        @else
+		            <li class="nav-item dropdown">
+			            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+			            {{ Auth::user()->name }} <span class="caret"></span>
+			            </a>
+			            <div class="dropdown-menu">
+			                <a class="dropdown-item" href="{{ route('logout') }}">Déconnexion</a>
+
+			                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+			                    @csrf
+			                </form>
+			            </div>
+		            </li>
+		        @endguest
+
+    			</ul>
+    		</div>
+    	</nav>
+                        
 		@yield('content')
+
 	<script type="text/javascript" src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 	</body>
 </html>
