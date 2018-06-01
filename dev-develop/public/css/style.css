@@ -115,6 +115,27 @@ div h1 {
     background-color: #B2DFDB;
 }
 
+#dashboard {
+    padding-top: 20px;
+    padding-left: 280px;
+    text-align: center;
+}
+
+#dashboard #cyan {
+    background-color: #039BE5;
+    color: white;
+}
+
+#dashboard #orange {
+    background-color: #FB8C00;
+    color: white;
+}
+
+#dashboard #brown {
+    background-color: #6D4C41;
+    color: white;
+}
+
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}

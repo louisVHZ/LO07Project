@@ -16,10 +16,35 @@
                         @csrf
 
                         <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Vous êtes</label>
+
+                            <div class="col-md-3">
+                                <label for="nounou" >Une nounou</label>
+                                <input id="nounou" type="radio" class="form-control{{ $errors->has('nounou') ? ' is-invalid' : '' }}" name="role" value="{{ old('nounou') }}" required>
+
+                                @if ($errors->has('nounou'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('nounou') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="col-md-3">
+                                <label for="parent" >Un parent</label>
+                                <input id="parent" type="radio" class="form-control{{ $errors->has('parent') ? ' is-invalid' : '' }}" name="role" value="{{ old('parent') }}" required>
+
+                                @if ($errors->has('parent'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('parent') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="prenom" class="col-md-4 col-form-label text-md-right">Prénom</label>
 
                             <div class="col-md-6">
-                                <input id="prenom" type="text" class="form-control{{ $errors->has('prenom') ? ' is-invalid' : '' }}" name="prenom" value="{{ old('prenom') }}" autofocus>
+                                <input id="prenom" type="text" class="form-control{{ $errors->has('prenom') ? ' is-invalid' : '' }}" name="prenom" value="{{ old('prenom') }}" required>
 
                                 @if ($errors->has('prenom'))
                                     <span class="invalid-feedback">
@@ -33,7 +58,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">Nom</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required>
 
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback">
