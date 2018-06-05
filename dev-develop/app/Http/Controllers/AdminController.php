@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use \App\User;
+use Illuminate\Support\Facades\DB;
 
 
 class AdminController extends Controller
@@ -44,6 +45,20 @@ class AdminController extends Controller
 
         if(Auth::user()->isAdmin()) {
             return view('admin.users')->with('users', $data);
+        }
+    }
+
+    /**
+     * Show the users of the app.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function editUser($id)
+    {
+        $user = User::where('id', '=', $id)->get();
+
+        if(Auth::user()->isAdmin()) {
+            return view('admin.editUser')->with('user', $user[0]);
         }
     }
 }

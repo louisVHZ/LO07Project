@@ -46,6 +46,7 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <img id="profilePicture" src="file:///C:/Users/LOUIS_PC/Documents/GitHub/LO07Project/dev-develop/storage/ressources/assets/img/FKQWVzsx5fwZNF7nAAXkZofwPNo5zYjmsp0LXyHP.jpeg" />
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 

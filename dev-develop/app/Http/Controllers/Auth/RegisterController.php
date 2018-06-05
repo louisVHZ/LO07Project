@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Storage;
 
 class RegisterController extends Controller
 {
@@ -43,7 +44,6 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'role' => 'required|in:nounou,parent',
             'prenom' => 'required|string|max:255',
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -66,6 +66,10 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         
+        /*if($data['role'] == 'nounou') {
+            Nounou::create([]);
+        }*/
+
         return User::create([
             'prenom' => $data['prenom'],
             'name' => $data['name'],
@@ -76,26 +80,7 @@ class RegisterController extends Controller
             'tel' => $data['tel'],
             'dateDeNaissance' => $data['dateDeNaissance'],
             'password' => Hash::make($data['password']),
-            'photo' => $this->photoUpload($data),
+            'photo' => Storage::disk('img')->put(null, $data);,
         ]);
-    }
-
-    /**
-     * Upload a photo
-     *
-     * @param  array $data
-     * @return $name of the photo
-     */
-    protected function photoUpload(array $data) 
-    {
-        if ($data[hasFile('photo')]) {
-            $image = $data->file('photo');
-            $name = $image->getClientOriginalExtension();
-            $destinationPath = public_path('/img');
-            $image->move($destinationPath, $name);
-            $this->save();
-
-            return $name;
-        }
     }
 }

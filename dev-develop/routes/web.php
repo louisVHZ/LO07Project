@@ -34,8 +34,9 @@ Route::group(['middleware' => 'web'], function () {
 	Route::get('/accueil', 'AccueilController@index');
 
 	// Admin
-	Route::get('/admin/dashboard', 'AdminController@dashboard');
+	Route::get('/admin/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
 	Route::get('/admin/users', 'AdminController@users')->name('admin/users');
+	Route::get('/admin/users/{id}', 'AdminController@editUser')->name('admin.editUser');
 
 });
 

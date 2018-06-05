@@ -4,24 +4,6 @@
 
 @section('content')
 
-    <!--<nav class="navbar navbar-expand-lg navbar-light navbar-fixed-top">
-      <a class="navbar-brand" href="/">Nounou</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route('login') }}">Connexion</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link button" href="{{ route('register') }}">Inscription</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
--->
-
     <div id="mySidenav" class="sidenav">
       <a href=" {{ route('admin/users') }}">Utilisateurs</a>
       <a href="#">Services</a>
@@ -42,13 +24,15 @@
           <th>Rue</th>
           <th>Code postal</th>
           <th>Telephone</th>
+          <th>Actions</th>
         </tr>
 
 <?php
 
 $html = '';
-foreach($users as $user) {
-
+$route = '';
+foreach($users as $user) 
+{
   $html .= '<tr>';
   $html .= '<td>' . $user->id . '</td>';
   $html .= '<td>' . $user->name . '</td>';
@@ -58,8 +42,11 @@ foreach($users as $user) {
   $html .= '<td>' . $user->rue . '</td>';
   $html .= '<td>' . $user->codePostal . '</td>';
   $html .= '<td>' . $user->tel . '</td>';
+  $route2 = route('admin.editUser', array('id' => $user->id));
+  $html .= '<td>' . '<a href="' . $route2 . '"><img src="https://png.icons8.com/metro/50/000000/edit.png"></a>';
+  $html .= '<a href="route(\'admin/users/\' ' . $user->id . ')"><img src="https://png.icons8.com/color/50/000000/cancel.png"></a>';
+  $html .= '</td>';
   $html .= '</tr>';
-
 }
 
 echo($html);
