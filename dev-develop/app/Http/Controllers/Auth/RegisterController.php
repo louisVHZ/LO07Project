@@ -80,7 +80,7 @@ class RegisterController extends Controller
             'tel' => $data['tel'],
             'dateDeNaissance' => $data['dateDeNaissance'],
             'password' => Hash::make($data['password']),
-            'photo' => Storage::disk('img')->put(null, $data);,
+            'photo' => Storage::disk('img')->put(null, $data)
         ]);
     }
 }
