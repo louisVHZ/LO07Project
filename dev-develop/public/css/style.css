@@ -107,6 +107,11 @@ div h1 {
 	padding-left: 280px;
 }
 
+#usersContainer h2 {
+    margin-bottom: 50px;
+}
+
+
 #usersContainer table, th, td {
     border: 1px solid black;
 }
@@ -114,6 +119,7 @@ div h1 {
 #usersContainer table tr:nth-child(2n) {
     background-color: #B2DFDB;
 }
+
 
 #dashboard {
     padding-top: 20px;

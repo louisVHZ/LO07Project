@@ -49,16 +49,46 @@ class AdminController extends Controller
     }
 
     /**
-     * Show the users of the app.
+     * Show information of a given user
      *
-     * @return \Illuminate\Http\Response
+     * @return view
      */
-    public function editUser($id)
+    public function showUser($id)
     {
         $user = User::where('id', '=', $id)->get();
 
         if(Auth::user()->isAdmin()) {
-            return view('admin.editUser')->with('user', $user[0]);
+            return view('admin.showUser')->with('user', $user[0]);
         }
+    }
+
+    /**
+     * Delete a given user
+     *
+     * @return redirect
+     */
+    public function deleteUser($id)
+    {
+        $user = User::where('id', '=', $id)->delete();
+
+        return Redirect::route('admin/users');
+    }
+
+    /**
+     * Edit a given user
+     *
+     * @return redirect
+     */
+    public function editUser($id)
+    {
+        $user = User::where('id', '=', $id)->get();
+        if (Input::has('prenom'))
+        {
+            $user->prenom = Input::get('prenom');
+        }
+
+        $user->prenom = 'bonjour';
+
+        return $user->save();
     }
 }

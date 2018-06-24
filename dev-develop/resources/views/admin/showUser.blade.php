@@ -12,14 +12,15 @@
     </div>
 
     <div id="usersContainer">
-    	<form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+    	<h2>Fiche informatives : <em>{{ $user->prenom }} {{ $user->name }}</em></h2>
+    	<form method="POST" action="{{ route('admin.editUser', $user->id) }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
                             <label for="prenom" class="col-md-4 col-form-label text-md-right">Prénom</label>
 
                             <div class="col-md-6">
-                                <input id="prenom" type="text" class="form-control{{ $errors->has('prenom') ? ' is-invalid' : '' }}" name="prenom" value="{{ $user->prenom }}" required>
+                                <input id="prenom" type="text" class="form-control{{ $errors->has('prenom') ? ' is-invalid' : '' }}" name="prenom" value="{{ $user->prenom }}" >
 
                                 @if ($errors->has('prenom'))
                                     <span class="invalid-feedback">
@@ -33,7 +34,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">Nom</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ $user->name }}" required>
+                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ $user->name }}" >
 
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback">
@@ -47,7 +48,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $user->email }}" required>
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $user->email }}" >
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback">
@@ -61,7 +62,7 @@
                             <label for="rue" class="col-md-4 col-form-label text-md-right">Rue</label>
 
                             <div class="col-md-6">
-                                <input id="rue" type="text" class="form-control{{ $errors->has('rue') ? ' is-invalid' : '' }}" name="rue" value="{{ $user->rue }}" required>
+                                <input id="rue" type="text" class="form-control{{ $errors->has('rue') ? ' is-invalid' : '' }}" name="rue" value="{{ $user->rue }}" >
 
                                 @if ($errors->has('rue'))
                                     <span class="invalid-feedback">
@@ -75,7 +76,7 @@
                             <label for="ville" class="col-md-4 col-form-label text-md-right">Ville</label>
 
                             <div class="col-md-6">
-                                <input id="ville" type="text" class="form-control{{ $errors->has('ville') ? ' is-invalid' : '' }}" name="ville" value="{{ $user->ville }}" required>
+                                <input id="ville" type="text" class="form-control{{ $errors->has('ville') ? ' is-invalid' : '' }}" name="ville" value="{{ $user->ville }}" >
 
                                 @if ($errors->has('ville'))
                                     <span class="invalid-feedback">
@@ -89,7 +90,7 @@
                             <label for="codePostal" class="col-md-4 col-form-label text-md-right">Code postal</label>
 
                             <div class="col-md-6">
-                                <input id="codePostal" type="text" class="form-control{{ $errors->has('codePostal') ? ' is-invalid' : '' }}" name="codePostal" value="{{ $user->codePostal }}" required>
+                                <input id="codePostal" type="text" class="form-control{{ $errors->has('codePostal') ? ' is-invalid' : '' }}" name="codePostal" value="{{ $user->codePostal }}" >
 
                                 @if ($errors->has('codePostal'))
                                     <span class="invalid-feedback">
@@ -103,7 +104,7 @@
                             <label for="tel" class="col-md-4 col-form-label text-md-right">Téléphone</label>
 
                             <div class="col-md-6">
-                                <input id="tel" type="tel" class="form-control{{ $errors->has('tel') ? ' is-invalid' : '' }}" name="tel" value="{{ $user->tel }}" required>
+                                <input id="tel" type="tel" class="form-control{{ $errors->has('tel') ? ' is-invalid' : '' }}" name="tel" value="{{ $user->tel }}" >
 
                                 @if ($errors->has('tel'))
                                     <span class="invalid-feedback">
@@ -117,7 +118,7 @@
                             <label for="dateDeNaissance" class="col-md-4 col-form-label text-md-right">Date de naissance</label>
 
                             <div class="col-md-6">
-                                <input id="dateDeNaissance" type="date" class="form-control{{ $errors->has('dateDeNaissance') ? ' is-invalid' : '' }}" name="dateDeNaissance" value="{{ $user->dateDeNaissance }}" required>
+                                <input id="dateDeNaissance" type="date" class="form-control{{ $errors->has('dateDeNaissance') ? ' is-invalid' : '' }}" name="dateDeNaissance" value="{{ $user->dateDeNaissance }}" >
 
                                 @if ($errors->has('dateDeNaissance'))
                                     <span class="invalid-feedback">
