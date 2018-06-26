@@ -10,4 +10,19 @@ $(document).ready(function () {
 	    $('#deleteUser-form').submit();
 	});
 
+	$('#parentform').fadeOut();
+	$('#nounouform').fadeOut();
+
+	$('#register input').on('change', function() {
+   		$('#nounou').click(function(){
+		    $('#parentform').fadeOut();
+		    $('#nounouform').show();
+		});
+
+		$('#parent').click(function(){
+		    $('#nounouform').fadeOut();
+		    $('#parentform').show();
+		});
+	});
+
 });

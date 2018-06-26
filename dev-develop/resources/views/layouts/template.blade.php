@@ -7,6 +7,7 @@
         <link href="{{ asset('css/style.css') }}" type="text/css" rel="stylesheet">
         <link href="{{ asset('css/bootstrap.min.css') }}" type="text/css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+        <script   src="https://code.jquery.com/jquery-3.3.1.min.js"   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="   crossorigin="anonymous"></script>
 	    <title>@yield('title')</title>
 	</head>
 	<body>

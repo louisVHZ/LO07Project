@@ -82,14 +82,9 @@ class AdminController extends Controller
      */
     public function editUser($id)
     {
-        $user = User::where('id', '=', $id)->get();
-        if (Input::has('prenom'))
-        {
-            $user->prenom = Input::get('prenom');
-        }
-
-        $user->prenom = 'bonjour';
-
-        return $user->save();
+        DB::table('users')
+            ->where('id', $id)
+            ->update(['prenom' => 'bonjour']);
+        return Redirect::route('admin/showUser');
     }
 }

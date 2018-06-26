@@ -44,14 +44,15 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+            'role' => 'required',
             'prenom' => 'required|string|max:255',
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'rue' => 'required|string|max:255',
+            'rue' => 'string|max:255',
             'ville' => 'required|string|max:255',
-            'codePostal' => 'required|integer',
-            'tel' => 'required|string|max:10',
-            'dateDeNaissance' => 'required|date',
+            'codePostal' => 'integer',
+            'tel' => 'string|max:10',
+            'dateDeNaissance' => 'date',
             'password' => 'required|string|min:6|confirmed',
             'photo' => 'image|mimes:jpg,png,jpeg,gif,svg',
         ]);
@@ -65,12 +66,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        
-        /*if($data['role'] == 'nounou') {
-            Nounou::create([]);
-        }*/
 
         return User::create([
+            'role' => $data['role'],
             'prenom' => $data['prenom'],
             'name' => $data['name'],
             'email' => $data['email'],
