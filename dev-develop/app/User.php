@@ -13,7 +13,7 @@ class User extends Authenticatable
 
     public $timestamps = false;
 
-    protected $fillable = ['name', 'prenom', 'dateDeNaissance', 'rue', 'ville', 'codePostal', 'tel', 'email','password', 'photo'];
+    protected $fillable = ['name', 'prenom', 'dateDeNaissance', 'rue', 'ville', 'codePostal', 'tel', 'email','password', 'photo', 'role', 'remarque'];
 
     /**
      * The attributes that should be hidden for arrays.

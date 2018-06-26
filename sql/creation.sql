@@ -1,7 +1,8 @@
+-- -----------------------------------------------------
+-- Table `users`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `users` ;
 
--- -----------------------------------------------------
--- Table `Users`
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `users` (
   `id` INT(4) NOT NULL AUTO_INCREMENT,
   `nom` VARCHAR(45) NULL,
@@ -10,50 +11,23 @@ CREATE TABLE IF NOT EXISTS `users` (
   `rue` VARCHAR(45) NULL,
   `ville` VARCHAR(45) NULL,
   `codePostal` INT(5) NULL,
-  `photo` VARCHAR(45) NULL,
-  `tel` VARCHAR(10) NULL,
+  `photo` VARCHAR(100) NULL,
+  `tel` INT(10) NULL,
   `email` VARCHAR(100) NULL,
+  `remarque` VARCHAR(100) NULL,
+  `role` VARCHAR(45) NULL,
   `password` VARCHAR(64) NULL,
-  `admin` TINYINT(1) NULL DEFAULT '0',
-  `remember_token` VARCHAR(100) NULL,
+  `admin` TINYINT(1) DEFAULT 0,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Parent`
+-- Table  `Langue`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Parent` (
-  `id` INT(4) NOT NULL,
-  `remarque` VARCHAR(100) NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `fk_Parent_Utilisateur`
-    FOREIGN KEY (`id`)
-    REFERENCES `users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+DROP TABLE IF EXISTS  `Langue` ;
 
-
--- -----------------------------------------------------
--- Table `Nounou`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Nounou` (
-  `id` INT(4) NOT NULL,
-  `presentation` VARCHAR(100) NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `fk_Nounou_Utilisateur1`
-    FOREIGN KEY (`id`)
-    REFERENCES `users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `Langue`
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Langue` (
   `id` INT(4) NOT NULL,
   `nom` VARCHAR(45) NULL,
@@ -62,20 +36,22 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Parler`
+-- Table `Parler`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Parler` (
-  `Nounou_id` INT(4) NOT NULL,
+DROP TABLE IF EXISTS `Parler` ;
+
+CREATE TABLE IF NOT EXISTS   `Parler` (
+  `users_id` INT(4) NOT NULL,
   `Langue_id` INT(4) NOT NULL,
-  PRIMARY KEY (`Nounou_id`, `Langue_id`),
-  INDEX `fk_Nounou_has_Langue_Langue1_idx` (`Langue_id` ASC),
-  INDEX `fk_Nounou_has_Langue_Nounou1_idx` (`Nounou_id` ASC),
-  CONSTRAINT `fk_Nounou_has_Langue_Nounou1`
-    FOREIGN KEY (`Nounou_id`)
-    REFERENCES `Nounou` (`id`)
+  PRIMARY KEY (`users_id`, `Langue_id`),
+  INDEX `fk_users_has_Langue_Langue1_idx` (`Langue_id` ASC),
+  INDEX `fk_users_has_Langue_users1_idx` (`users_id` ASC),
+  CONSTRAINT `fk_users_has_Langue_users1`
+    FOREIGN KEY (`users_id`)
+    REFERENCES `users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Nounou_has_Langue_Langue1`
+  CONSTRAINT `fk_users_has_Langue_Langue1`
     FOREIGN KEY (`Langue_id`)
     REFERENCES `Langue` (`id`)
     ON DELETE NO ACTION
@@ -84,9 +60,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table .`Disponibilite`
+-- Table   `Disponibilite`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Disponibilite` (
+DROP TABLE IF EXISTS   `Disponibilite` ;
+
+CREATE TABLE IF NOT EXISTS   `Disponibilite` (
   `id` INT(4) NOT NULL,
   `dateDebut` DATETIME NULL,
   `dateFin` DATETIME NULL,
@@ -95,107 +73,188 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Avoir`
+-- Table   `Avoir`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Avoir` (
-  `Nounou_id` INT(4) NOT NULL,
-  `Disponibilité_id` INT(4) NOT NULL,
-  PRIMARY KEY (`Nounou_id`, `Disponibilité_id`),
-  INDEX `fk_Nounou_has_Disponibilité_Disponibilité1_idx` (`Disponibilité_id` ASC),
-  INDEX `fk_Nounou_has_Disponibilité_Nounou1_idx` (`Nounou_id` ASC),
-  CONSTRAINT `fk_Nounou_has_Disponibilité_Nounou1`
-    FOREIGN KEY (`Nounou_id`)
-    REFERENCES `Nounou` (`id`)
+DROP TABLE IF EXISTS   `Avoir` ;
+
+CREATE TABLE IF NOT EXISTS   `Avoir` (
+  `users_id` INT(4) NOT NULL,
+  `Disponibilite_id` INT(4) NOT NULL,
+  PRIMARY KEY (`users_id`, `Disponibilite_id`),
+  INDEX `fk_users_has_Disponibilite_Disponibilite1_idx` (`Disponibilite_id` ASC),
+  INDEX `fk_users_has_Disponibilite_users1_idx` (`users_id` ASC),
+  CONSTRAINT `fk_users_has_Disponibilite_users1`
+    FOREIGN KEY (`users_id`)
+    REFERENCES   `users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Nounou_has_Disponibilité_Disponibilité1`
-    FOREIGN KEY (`Disponibilité_id`)
-    REFERENCES `Disponibilite` (`id`)
+  CONSTRAINT `fk_users_has_Disponibilite_Disponibilite1`
+    FOREIGN KEY (`Disponibilite_id`)
+    REFERENCES   `Disponibilite` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Evaluer`
+-- Table   `Evaluer`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Evaluer` (
-  `Parent_id` INT(4) NOT NULL,
-  `Nounou_id` INT(4) NOT NULL,
-  `note` INT(1) NULL,
+DROP TABLE IF EXISTS   `Evaluer` ;
+
+CREATE TABLE IF NOT EXISTS   `Evaluer` (
+  `users_id` INT(4) NOT NULL,
+  `users_id1` INT(4) NOT NULL,
   `commentaire` VARCHAR(100) NULL,
-  PRIMARY KEY (`Parent_id`, `Nounou_id`),
-  INDEX `fk_Parent_has_Nounou_Nounou1_idx` (`Nounou_id` ASC),
-  INDEX `fk_Parent_has_Nounou_Parent1_idx` (`Parent_id` ASC),
-  CONSTRAINT `fk_Parent_has_Nounou_Parent1`
-    FOREIGN KEY (`Parent_id`)
-    REFERENCES `Parent` (`id`)
+  PRIMARY KEY (`users_id`, `users_id1`),
+  INDEX `fk_users_has_users_users2_idx` (`users_id1` ASC),
+  INDEX `fk_users_has_users_users1_idx` (`users_id` ASC),
+  CONSTRAINT `fk_users_has_users_users1`
+    FOREIGN KEY (`users_id`)
+    REFERENCES   `users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Parent_has_Nounou_Nounou1`
-    FOREIGN KEY (`Nounou_id`)
-    REFERENCES `Nounou` (`id`)
+  CONSTRAINT `fk_users_has_users_users2`
+    FOREIGN KEY (`users_id1`)
+    REFERENCES   `users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Enfant`
+-- Table   `Enfant`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Enfant` (
+DROP TABLE IF EXISTS   `Enfant` ;
+
+CREATE TABLE IF NOT EXISTS   `Enfant` (
   `id` INT NOT NULL,
-  `Parent_id` INT(4) NOT NULL,
+  `users_id` INT(4) NOT NULL,
   `nom` VARCHAR(45) NULL,
   `prenom` VARCHAR(45) NULL,
   `dateDeNaissance` DATE NULL,
   `remarque` VARCHAR(100) NULL,
   `restrictionAlimentaire` VARCHAR(100) NULL,
-  PRIMARY KEY (`id`, `Parent_id`),
-  INDEX `fk_Enfant_Parent1_idx` (`Parent_id` ASC),
-  CONSTRAINT `fk_Enfant_Parent1`
-    FOREIGN KEY (`Parent_id`)
-    REFERENCES `Parent` (`id`)
+  PRIMARY KEY (`id`, `users_id`),
+  INDEX `fk_Enfant_users1_idx` (`users_id` ASC),
+  CONSTRAINT `fk_Enfant_users1`
+    FOREIGN KEY (`users_id`)
+    REFERENCES   `users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Experience`
+-- Table   `Experience`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Experience` (
+DROP TABLE IF EXISTS   `Experience` ;
+
+CREATE TABLE IF NOT EXISTS   `Experience` (
   `id` INT(4) NOT NULL,
-  `Nounou_id` INT(4) NOT NULL,
+  `users_id` INT(4) NOT NULL,
   `description` VARCHAR(100) NULL,
-  PRIMARY KEY (`id`, `Nounou_id`),
-  INDEX `fk_Experience_Nounou1_idx` (`Nounou_id` ASC),
-  CONSTRAINT `fk_Experience_Nounou1`
-    FOREIGN KEY (`Nounou_id`)
-    REFERENCES `Nounou` (`id`)
+  PRIMARY KEY (`id`, `users_id`),
+  INDEX `fk_Experience_users1_idx` (`users_id` ASC),
+  CONSTRAINT `fk_Experience_users1`
+    FOREIGN KEY (`users_id`)
+    REFERENCES   `users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `DemandeDeGarde`
+-- Table   `Evaluer`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `DemandeDeGarde` (
-  `Parent_id` INT(4) NOT NULL,
-  `Nounou_id` INT(4) NOT NULL,
-  `message` VARCHAR(50) NULL,
-  PRIMARY KEY (`Parent_id`, `Nounou_id`),
-  INDEX `fk_Parent_has_Nounou_Nounou2_idx` (`Nounou_id` ASC),
-  INDEX `fk_Parent_has_Nounou_Parent2_idx` (`Parent_id` ASC),
-  CONSTRAINT `fk_Parent_has_Nounou_Parent2`
-    FOREIGN KEY (`Parent_id`)
-    REFERENCES `Parent` (`id`)
+DROP TABLE IF EXISTS   `Evaluer` ;
+
+CREATE TABLE IF NOT EXISTS   `Evaluer` (
+  `users_id` INT(4) NOT NULL,
+  `users_id1` INT(4) NOT NULL,
+  `commentaire` VARCHAR(100) NULL,
+  PRIMARY KEY (`users_id`, `users_id1`),
+  INDEX `fk_users_has_users_users2_idx` (`users_id1` ASC),
+  INDEX `fk_users_has_users_users1_idx` (`users_id` ASC),
+  CONSTRAINT `fk_users_has_users_users1`
+    FOREIGN KEY (`users_id`)
+    REFERENCES   `users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Parent_has_Nounou_Nounou2`
-    FOREIGN KEY (`Nounou_id`)
-    REFERENCES `Nounou` (`id`)
+  CONSTRAINT `fk_users_has_users_users2`
+    FOREIGN KEY (`users_id1`)
+    REFERENCES   `users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table   `Demande_de_garde`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS   `Demande_de_garde` ;
+
+CREATE TABLE IF NOT EXISTS   `Demande_de_garde` (
+  `users_id` INT(4) NOT NULL,
+  `users_id1` INT(4) NOT NULL,
+  PRIMARY KEY (`users_id`, `users_id1`),
+  INDEX `fk_users_has_users_users4_idx` (`users_id1` ASC),
+  INDEX `fk_users_has_users_users3_idx` (`users_id` ASC),
+  CONSTRAINT `fk_users_has_users_users3`
+    FOREIGN KEY (`users_id`)
+    REFERENCES   `users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_users_has_users_users4`
+    FOREIGN KEY (`users_id1`)
+    REFERENCES   `users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table   `Parler`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS   `Parler` ;
+
+CREATE TABLE IF NOT EXISTS   `Parler` (
+  `users_id` INT(4) NOT NULL,
+  `Langue_id` INT(4) NOT NULL,
+  PRIMARY KEY (`users_id`, `Langue_id`),
+  INDEX `fk_users_has_Langue_Langue1_idx` (`Langue_id` ASC),
+  INDEX `fk_users_has_Langue_users1_idx` (`users_id` ASC),
+  CONSTRAINT `fk_users_has_Langue_users1`
+    FOREIGN KEY (`users_id`)
+    REFERENCES   `users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_users_has_Langue_Langue1`
+    FOREIGN KEY (`Langue_id`)
+    REFERENCES   `Langue` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table   `Avoir`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS   `Avoir` ;
+
+CREATE TABLE IF NOT EXISTS   `Avoir` (
+  `users_id` INT(4) NOT NULL,
+  `Disponibilite_id` INT(4) NOT NULL,
+  PRIMARY KEY (`users_id`, `Disponibilite_id`),
+  INDEX `fk_users_has_Disponibilite_Disponibilite1_idx` (`Disponibilite_id` ASC),
+  INDEX `fk_users_has_Disponibilite_users1_idx` (`users_id` ASC),
+  CONSTRAINT `fk_users_has_Disponibilite_users1`
+    FOREIGN KEY (`users_id`)
+    REFERENCES   `users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_users_has_Disponibilite_Disponibilite1`
+    FOREIGN KEY (`Disponibilite_id`)
+    REFERENCES   `Disponibilite` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

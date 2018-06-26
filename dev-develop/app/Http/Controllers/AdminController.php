@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use \App\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 
 class AdminController extends Controller
