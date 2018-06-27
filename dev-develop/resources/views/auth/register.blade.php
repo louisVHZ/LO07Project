@@ -8,19 +8,16 @@
                     <div class="card-header">Enregistrez-vous</div>
 
                     <div class="card-body">
-                        Tout les champs sont obligatoires.
+                        Tous les champs sont obligatoires.
                     </div>
 
                     <div class="card-body">
-                        <form id="register" method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
-                            @csrf
-
-                            <div class="form-group row">
+                            <div id="register" class="form-group row">
                                 <label class="col-md-4 col-form-label text-md-right">Vous êtes</label>
 
                                 <div class="col-md-3">
                                     <label for="nounou" >Une nounou</label>
-                                    <input id="nounou" type="radio" class="form-control{{ $errors->has('nounou') ? ' is-invalid' : '' }}" name="role" value="nounou">
+                                    <input id="nounou" type="radio" class="form-control{{ $errors->has('nounou') ? ' is-invalid' : '' }}" name="choice" value="nounou">
 
                                     @if ($errors->has('nounou'))
                                     <span class="invalid-feedback">
@@ -31,7 +28,7 @@
 
                                 <div class="col-md-3">
                                     <label for="parent" >Un parent</label>
-                                    <input id="parent" type="radio" class="form-control{{ $errors->has('parent') ? ' is-invalid' : '' }}" name="role" value="parent">
+                                    <input id="parent" type="radio" class="form-control{{ $errors->has('parent') ? ' is-invalid' : '' }}" name="choice" value="parent">
 
                                     @if ($errors->has('parent'))
                                     <span class="invalid-feedback">
@@ -41,8 +38,10 @@
                                 </div>
                             </div>
 
-                            <!--<div id="parentform">
-                                <fieldset id="parentGroup">
+                            <form id="registerParent" method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+                            @csrf
+                            <div id="parentform">
+                                <input type="hidden" name="role" value="parent">  
                                 <div class="form-group row">
                                     <label for="prenom" class="col-md-4 col-form-label text-md-right">Prénom</label>
 
@@ -120,11 +119,23 @@
                                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
                                     </div>
                                 </div>
-                                </fieldset>
-                            </div>
 
+                                <div class="form-group row mb-0">
+                                    <div class="col-md-6 offset-md-4">
+                                        <button id="submit" type="submit" class="btn btn-primary">
+                                         Enregistrer
+                                     </button>
+                                 </div>
+                             </div>
+
+                         </div>
+
+                        </form>
+
+                        <form id="registerNounou" method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+                            @csrf
                              <div id="nounouform">
-                                <fieldset id="nounouGroup">
+                                <input type="hidden" name="role" value="nounou">  
                                 <div class="form-group row">
                                     <label for="prenom" class="col-md-4 col-form-label text-md-right">Prénom</label>
 
@@ -244,19 +255,17 @@
                                         @endif
                                     </div>
                                 </div>
-                                </fieldset>
+
+                                <div class="form-group row mb-0">
+                                    <div class="col-md-6 offset-md-4">
+                                        <button id="submit" type="submit" class="btn btn-primary">
+                                         Enregistrer
+                                        </button>
+                                    </div>
+                                </div>
+
                             </div>
-
-
-                            <div class="form-group row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                     Enregistrer
-                                 </button>
-                             </div>
-                         </div>-->
-
-                     </form>
+                        </form>
                  </div>
              </div>
          </div>
