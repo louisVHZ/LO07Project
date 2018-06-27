@@ -20,4 +20,9 @@ $(document).ready(function () {
 	    $('#accepterNounou-form').submit();
 	});
 
+	$('.refuserNounou').click(function(event) {
+	    event.preventDefault();
+	    $('#deleteUser-form').submit();
+	});
+
 });

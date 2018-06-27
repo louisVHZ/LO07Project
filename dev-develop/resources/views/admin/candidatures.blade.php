@@ -8,8 +8,6 @@
       <a href=" {{ route('admin.dashboard') }} ">Dashboard</a>
       <a href=" {{ route('admin/users') }} ">Utilisateurs</a>
       <a href=" {{ route('admin.candidatures') }} " class="active">Candidatures</a>
-      <a href="#">Clients</a>
-      <a href="#">Contact</a>
     </div>
 
     <div id="candidatures">
@@ -35,8 +33,8 @@
               <td>{{ $c->dateDeNaissance }}</td>
               <td>{{ $c->ville }}</td>
               <td>{{ $c->tel }}</td>
-              <td><a href="accepterNounou">Accepter</a> <a class="deleteUser">Refuser</a></td>
-              <form id="deleteUser-form" action="{{route('admin.deleteUser', array('id' => $c->id)) }}" method="POST" style="display: none;">
+              <td><a class="accepterNounou" href="">Accepter</a> <a href="" class="refuserNounou">Refuser</a></td>
+              <form id="refuserNounou-form" action="{{route('admin.refuserNounou', array('id' => $c->id)) }}" method="POST" style="display: none;">
                 @csrf
                 <input type="hidden" name="id" value="{{ $c->id }}" />
               </form>

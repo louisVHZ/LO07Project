@@ -42,6 +42,7 @@ Route::group(['middleware' => 'web'], function () {
 	Route::post('/admin/editUser/{id}', 'AdminController@editUser')->name('admin.editUser');
 	Route::post('/admin/deleteUser/{id}', 'AdminController@deleteUser')->name('admin.deleteUser');
 	Route::post('/admin/accepterNounou/{id}', 'AdminController@accepterNounou')->name('admin.accepterNounou');
+	Route::post('/admin/refuserNounou/{id}', 'AdminController@refuserNounou')->name('admin.refuserNounou');
 	/* END ADMIN */
 
 });

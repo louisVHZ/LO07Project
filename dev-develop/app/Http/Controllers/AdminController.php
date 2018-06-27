@@ -126,4 +126,18 @@ class AdminController extends Controller
         return Redirect::route('admin.candidatures');
     }
 
+    /**
+     * Delete a nounou
+     *
+     * @return redirect
+     */
+    public function refuserNounou($id)
+    {      
+        DB::table('users')
+            ->where('id', $id)
+            ->delete();
+
+        return Redirect::route('admin.candidatures');
+    }
+
 }
