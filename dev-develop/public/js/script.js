@@ -15,12 +15,12 @@ $(document).ready(function () {
 
 	$('#register input').on('change', function() {
    		$('#nounou').click(function(){
-		    $('#parentform').fadeOut();
+		    $('#parentform').hide();
 		    $('#nounouform').show();
 		});
 
 		$('#parent').click(function(){
-		    $('#nounouform').fadeOut();
+		    $('#nounouform').hide();
 		    $('#parentform').show();
 		});
 	});
