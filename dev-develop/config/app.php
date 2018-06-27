@@ -162,7 +162,6 @@ return [
         Bestmomo\Scafold\ScafoldServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
-        MaddHatter\LaravelFullcalendar\ServiceProvider::class,
 
     ],
 

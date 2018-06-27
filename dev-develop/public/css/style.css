@@ -16,6 +16,10 @@ nav {
 	margin-right: 85px;
 }
 
+.sidenav a.active {
+    color: #f1f1f1;
+}
+
 a.button {
     background-color: #039BE5;
     border-radius: 5px;
@@ -143,6 +147,11 @@ div h1 {
 #dashboard #brown {
     background-color: #6D4C41;
     color: white;
+}
+
+#candidatures {
+    padding-top: 20px;
+    padding-left: 280px;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */

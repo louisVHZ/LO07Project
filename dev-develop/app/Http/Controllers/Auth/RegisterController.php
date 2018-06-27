@@ -65,9 +65,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        if($data['role'] == 'nounou'){
-           return User::create([
-            'role' => $data['role'],
+
+      if($data['role'] == 'nounou'){
+        return User::create([
             'prenom' => $data['prenom'],
             'name' => $data['name'],
             'email' => $data['email'],

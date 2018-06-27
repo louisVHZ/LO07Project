@@ -164,31 +164,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table   `Evaluer`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS   `Evaluer` ;
-
-CREATE TABLE IF NOT EXISTS   `Evaluer` (
-  `users_id` INT(4) NOT NULL,
-  `users_id1` INT(4) NOT NULL,
-  `commentaire` VARCHAR(100) NULL,
-  PRIMARY KEY (`users_id`, `users_id1`),
-  INDEX `fk_users_has_users_users2_idx` (`users_id1` ASC),
-  INDEX `fk_users_has_users_users1_idx` (`users_id` ASC),
-  CONSTRAINT `fk_users_has_users_users1`
-    FOREIGN KEY (`users_id`)
-    REFERENCES   `users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_users_has_users_users2`
-    FOREIGN KEY (`users_id1`)
-    REFERENCES   `users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table   `Demande_de_garde`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS   `Demande_de_garde` ;
