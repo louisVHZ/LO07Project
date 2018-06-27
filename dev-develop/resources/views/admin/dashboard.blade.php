@@ -1,10 +1,13 @@
 @extends('layouts.template')
 
+@section('title', 'Accueil administrateur')
+
 @section('content')
 
     <div id="mySidenav" class="sidenav">
-      <a href=" {{ route('admin/users') }}">Utilisateurs</a>
-      <a href="#">Services</a>
+      <a href=" {{ route('admin.dashboard') }} " class="active">Dashboard</a>
+      <a href=" {{ route('admin/users') }} ">Utilisateurs</a>
+      <a href=" {{ route('admin.candidatures') }} ">Candidatures</a>
       <a href="#">Clients</a>
       <a href="#">Contact</a>
     </div>

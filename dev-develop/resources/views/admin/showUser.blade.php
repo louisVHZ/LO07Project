@@ -5,15 +5,15 @@
 @section('content')
 
     <div id="mySidenav" class="sidenav">
-      <a href=" {{ route('admin/users') }}">Utilisateurs</a>
+      <a href=" {{ route('admin/users') }}" class="active">Utilisateurs</a>
       <a href="#">Services</a>
       <a href="#">Clients</a>
       <a href="#">Contact</a>
     </div>
 
     <div id="usersContainer">
-    	<h2>Fiche informatives : <em>{{ $user->prenom }} {{ $user->name }}</em></h2>
-    	<form method="POST" action="{{ route('admin.editUser', $user->id) }}" enctype="multipart/form-data">
+    	<h2>Fiche informative : <em>{{ $user->prenom }} {{ $user->name }}</em></h2>
+    	<form id="editUser" method="POST" action="{{ route('admin.editUser', $user->id) }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
@@ -146,7 +146,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary editUser">
                                    Enregistrer
                                 </button>
                             </div>
