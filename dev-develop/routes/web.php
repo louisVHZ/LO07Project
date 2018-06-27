@@ -31,13 +31,27 @@ Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::group(['middleware' => 'web'], function () {
 
 	// Accueil
-	Route::get('/accueil', 'AccueilController@index');
-	Route::get('/events', 'EventController@index');
+	Route::get('/accueil', function() {
+		if(Auth::user()->role == 'nounou' && Auth::user()->admin == 0) {
+			return Redirect::route('nounou.planning');
+		}
+		if(Auth::user()->role == 'parent' && Auth::user()->admin == 0) {
+			return Redirect::route('parent.planning');
+		}
+		if(Auth::user()->admin == 1) {
+			return Redirect::route('admin.dashboard');
+		}
+	});
 
 	// Nounou
 	Route::get('/planning', 'EventController@nounouPlanning')->name('nounou.planning');
 	Route::get('/addDispo', 'EventController@addDispo')->name('nounou.addDispo');
 	Route::post('/addDisponibilite', 'EventController@addDisponibilite')->name('nounou.addDisponibilite');
+
+	// Parent
+	Route::get('/parentPlanning', 'EventController@parentPlanning')->name('parent.planning');
+	Route::get('/demandeGarde', 'EventController@demandeGarde')->name('parent.demandeGarde');
+	Route::post('/addGarde', 'EventController@addGarde')->name('parent.addGarde');
 
 	/* ADMIN */
 	Route::get('/admin/dashboard', 'AdminController@dashboard')->name('admin.dashboard');

@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Redirect;
 use Calendar;
 use Auth;
 use App\Disponibilite;
+use App\DemandeDeGarde;
+use App\User;
 
 class EventController extends Controller
 
@@ -78,7 +80,8 @@ class EventController extends Controller
       return view('addDispo');
     }
 
-    public function addDisponibilite() {
+    public function addDisponibilite() 
+    {
       $dispo = new Disponibilite();
       $dispo->id = 3;
       $dispo->title = Input::get('title');
@@ -87,5 +90,57 @@ class EventController extends Controller
       $dispo->save();
 
       return Redirect::route('nounou.planning');
+    }
+
+
+    public function parentPlanning()
+    {
+        $events = [];
+
+        $data = DB::table('users')
+            ->join('avoir2', 'users.id', '=', 'avoir2.users_id')
+            ->join('garde', 'avoir2.garde_id', '=', 'garde.id')
+            ->select('garde.*')
+            ->where('users.id', Auth::user()->id)
+            ->get();
+
+        if($data->count())
+         {
+            foreach ($data as $key => $value) 
+            {
+              $events[] = Calendar::event(
+                  $value->title,
+                  true,
+                  new \DateTime($value->start_date),
+                  new \DateTime($value->end_date)
+              );
+            }
+         }
+
+      $calendar = Calendar::addEvents($events); 
+
+      return view('planningParent', compact('calendar'));
+    }
+
+    public function demandeGarde() 
+    {
+      $users = User::where([
+                        ['role', '=', 'nounou'],
+                        ['valide', '=', '1'],
+                    ])->get();
+
+      return view('demandeGarde')->with('users', $users);
+    }
+
+    public function addGarde() 
+    {
+      $demande = new DemandeDeGarde();
+      $demande->users_id = Auth::user()->id;
+      $demande->users_id1 = Input::get('selectNounou');
+      $demande->start_date = Input::get('startDate');
+      $demande->end_date = Input::get('endDate');
+      $demande->save();
+
+      return Redirect::route('parent.planning');
     }
 }
