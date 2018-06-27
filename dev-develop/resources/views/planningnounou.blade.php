@@ -8,10 +8,15 @@
 
 	    <div class="panel panel-primary">
 
-	        <div class="panel-heading">
-
-	            MY Calendar    
-
+	        <div class="panel-heading container">
+	        	<div class="row">
+	        		<div class="col-md-6">
+	            		<h2 id="planning" >Mon planning</h2>
+	            	</div>
+	            	<div class="col-md-6" style="text-align: right">
+	            		<h2 id="planning"><a href="{{ route('nounou.addDispo') }}">Ajouter une disponibilité</a></h2>
+	            	</div>
+	           	</div>    
 	        </div>
 
 	        <div class="panel-body" >

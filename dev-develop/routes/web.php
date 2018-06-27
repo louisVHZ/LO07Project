@@ -34,6 +34,11 @@ Route::group(['middleware' => 'web'], function () {
 	Route::get('/accueil', 'AccueilController@index');
 	Route::get('/events', 'EventController@index');
 
+	// Nounou
+	Route::get('/planning', 'EventController@nounouPlanning')->name('nounou.planning');
+	Route::get('/addDispo', 'EventController@addDispo')->name('nounou.addDispo');
+	Route::post('/addDisponibilite', 'EventController@addDisponibilite')->name('nounou.addDisponibilite');
+
 	/* ADMIN */
 	Route::get('/admin/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
 	Route::get('/admin/users', 'AdminController@users')->name('admin/users');

@@ -233,3 +233,63 @@ CREATE TABLE IF NOT EXISTS   `Avoir` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table   `Avoir2`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS   `Avoir2` ;
+
+CREATE TABLE IF NOT EXISTS   `Avoir2` (
+  `users_id` INT(4) NOT NULL,
+  `Disponibilite_id` INT(4) NOT NULL,
+  PRIMARY KEY (`users_id`, `garde_id`),
+  INDEX `fk_users_has_Disponibilite_Disponibilite1_idx` (`Disponibilite_id` ASC),
+  INDEX `fk_users_has_Disponibilite_users1_idx` (`users_id` ASC),
+  CONSTRAINT `fk_users_has_Disponibilite_users1`
+    FOREIGN KEY (`users_id`)
+    REFERENCES   `users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_users_has_Disponibilite_Disponibilite1`
+    FOREIGN KEY (`Disponibilite_id`)
+    REFERENCES   `Disponibilite` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table   `Avoir2`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS   `Avoir2` ;
+
+CREATE TABLE IF NOT EXISTS   `Avoir2` (
+  `users_id` INT(4) NOT NULL,
+  `garde_id` INT(4) NOT NULL,
+  PRIMARY KEY (`users_id`, `garde_id`),
+  INDEX `fk_users_has_garde_garde1_idx` (`garde_id` ASC),
+  INDEX `fk_users_has_garde_users1_idx` (`users_id` ASC),
+  CONSTRAINT `fk_users_has_garde_users1`
+    FOREIGN KEY (`users_id`)
+    REFERENCES   `users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_users_has_garde_garde1`
+    FOREIGN KEY (`garde_id`)
+    REFERENCES   `garde` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table   `Garde`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS Garde;
+
+CREATE TABLE IF NOT EXISTS Garde (
+  id int(4) NOT NULL,
+  title varchar(64) DEFAULT NULL,
+  start_date date DEFAULT NULL,
+  end_date date DEFAULT NULL,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
