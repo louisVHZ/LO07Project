@@ -118,16 +118,16 @@
         },
         {
             "name": "caouecs/laravel-lang",
-            "version": "3.0.50",
+            "version": "3.0.51",
             "source": {
                 "type": "git",
                 "url": "https://github.com/caouecs/Laravel-lang.git",
-                "reference": "0e69b5e23ae6f2cc9af337c95cae579a105b1d53"
+                "reference": "28ad40c2ef6e244899a37e08a6e3144723316c6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/caouecs/Laravel-lang/zipball/0e69b5e23ae6f2cc9af337c95cae579a105b1d53",
-                "reference": "0e69b5e23ae6f2cc9af337c95cae579a105b1d53",
+                "url": "https://api.github.com/repos/caouecs/Laravel-lang/zipball/28ad40c2ef6e244899a37e08a6e3144723316c6a",
+                "reference": "28ad40c2ef6e244899a37e08a6e3144723316c6a",
                 "shasum": ""
             },
             "require-dev": {
@@ -156,7 +156,7 @@
                 "laravel",
                 "lpm"
             ],
-            "time": "2018-06-23T14:49:42+00:00"
+            "time": "2018-06-25T19:32:35+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",

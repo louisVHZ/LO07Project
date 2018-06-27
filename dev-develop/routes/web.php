@@ -32,13 +32,13 @@ Route::group(['middleware' => 'web'], function () {
 
 	// Accueil
 	Route::get('/accueil', 'AccueilController@index');
+	Route::get('/events', 'EventController@index');
 
-	// Admin
+	/* ADMIN */
 	Route::get('/admin/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
 	Route::get('/admin/users', 'AdminController@users')->name('admin/users');
 	Route::get('/admin/users/{id}', 'AdminController@showUser')->name('admin.showUser');
 	Route::get('/admin/candidatures', 'AdminController@showCandidatures')->name('admin.candidatures');
-
 
 	Route::post('/admin/editUser/{id}', 'AdminController@editUser')->name('admin.editUser');
 	Route::post('/admin/deleteUser/{id}', 'AdminController@deleteUser')->name('admin.deleteUser');
