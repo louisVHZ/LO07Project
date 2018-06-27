@@ -14,31 +14,32 @@ $(document).ready(function () {
 	$('#parentform').fadeOut();
 	$('#nounouform').fadeOut();
 
-	$('#register input').on('change', function() {
-   		$('#nounou').click(function(){
-		    $('#parentform').hide();
-		    $('#nounouform').show();
+		$('#register input').on('change', function() {
+	   		$('#nounou').click(function(){
+			    $('#parentform').hide();
+			    $('#nounouform').show();
+			});
+
+			$('#parent').click(function(){
+			    $('#nounouform').hide();
+			    $('#parentform').show();
+			});
+
+		$(".editUser").click(function(event) {
+		    event.preventDefault();
+		    $('#editUser').submit();
 		});
 
-		$('#parent').click(function(){
-		    $('#nounouform').hide();
-		    $('#parentform').show();
+		$(".accepterNounou").click(function(event) {
+		    event.preventDefault();
+		    $('#accepterNounou-form').submit();
 		});
 
-	$(".editUser").click(function(event) {
-	    event.preventDefault();
-	    $('#editUser').submit();
-	});
+		$('.refuserNounou').click(function(event) {
+		    event.preventDefault();
+		    $('#deleteUser-form').submit();
 
-	$(".accepterNounou").click(function(event) {
-	    event.preventDefault();
-	    $('#accepterNounou-form').submit();
-	});
-
-	$('.refuserNounou').click(function(event) {
-	    event.preventDefault();
-	    $('#deleteUser-form').submit();
+		});
 
 	});
-
 });
