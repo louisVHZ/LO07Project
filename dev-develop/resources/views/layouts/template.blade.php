@@ -7,12 +7,13 @@
         <link href="{{ asset('css/style.css') }}" type="text/css" rel="stylesheet">
         <link href="{{ asset('css/bootstrap.min.css') }}" type="text/css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+        <script   src="https://code.jquery.com/jquery-3.3.1.min.js"   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="   crossorigin="anonymous"></script>
 	    <title>@yield('title')</title>
 	</head>
 	<body>
 
 		<nav class="navbar navbar-expand-lg navbar-light navbar-fixed-top">
-	    	<a class="navbar-brand" href="/">Nounou</a>
+	    	<a class="navbar-brand" href="/">NannyWorld</a>
 	      	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="navbar-toggler-icon"></span>
 	      	</button>

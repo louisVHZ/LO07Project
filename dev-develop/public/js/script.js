@@ -10,6 +10,21 @@ $(document).ready(function () {
 	    $('#deleteUser-form').submit();
 	});
 
+
+	$('#parentform').fadeOut();
+	$('#nounouform').fadeOut();
+
+	$('#register input').on('change', function() {
+   		$('#nounou').click(function(){
+		    $('#parentform').hide();
+		    $('#nounouform').show();
+		});
+
+		$('#parent').click(function(){
+		    $('#nounouform').hide();
+		    $('#parentform').show();
+		});
+
 	$(".editUser").click(function(event) {
 	    event.preventDefault();
 	    $('#editUser').submit();
@@ -23,6 +38,7 @@ $(document).ready(function () {
 	$('.refuserNounou').click(function(event) {
 	    event.preventDefault();
 	    $('#deleteUser-form').submit();
+
 	});
 
 });

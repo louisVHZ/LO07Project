@@ -83,6 +83,8 @@ class AdminController extends Controller
      */
     public function editUser($id)
     {
+
+
         if (Input::has('prenom'))
         {
             $prenom = Input::get('prenom');
