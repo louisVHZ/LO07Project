@@ -65,11 +65,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        
-        /*if($data['role'] == 'nounou') {
-            Nounou::create([]);
-        }*/
-
         return User::create([
             'prenom' => $data['prenom'],
             'name' => $data['name'],

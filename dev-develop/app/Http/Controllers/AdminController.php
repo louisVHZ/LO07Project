@@ -7,6 +7,7 @@ use Auth;
 use \App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Input;
 
 
 class AdminController extends Controller
@@ -31,7 +32,7 @@ class AdminController extends Controller
         if(Auth::user()->isAdmin()) {
             return view('admin.dashboard');
         } else {
-            return 'pas admin';
+            return 'Vous etes pas admin';
         }
     }
 
@@ -82,14 +83,61 @@ class AdminController extends Controller
      */
     public function editUser($id)
     {
-        $user = User::where('id', '=', $id)->get();
         if (Input::has('prenom'))
         {
-            $user->prenom = Input::get('prenom');
+            $prenom = Input::get('prenom');
         }
+        
+        DB::table('users')
+            ->where('id', $id)
+            ->update(['prenom' => $prenom]);
 
-        $user->prenom = 'bonjour';
-
-        return $user->save();
+        return Redirect::route('admin.showUser', array('id' => $id));
     }
+
+    /**
+     * Edit a given user
+     *
+     * @return redirect
+     */
+    public function showCandidatures()
+    {      
+        $data = User::where([
+                        ['role', '=', 'nounou'],
+                        ['valide', '=', '0'],
+                    ])->get();
+
+        if(Auth::user()->isAdmin()) {
+            return view('admin.candidatures')->with('candidatures', $data);
+        }
+    }
+
+    /**
+     * Accept a nounou
+     *
+     * @return redirect
+     */
+    public function accepterNounou($id)
+    {      
+        DB::table('users')
+            ->where('id', $id)
+            ->update(['valide' => 1]);
+
+        return Redirect::route('admin.candidatures');
+    }
+
+    /**
+     * Delete a nounou
+     *
+     * @return redirect
+     */
+    public function refuserNounou($id)
+    {      
+        DB::table('users')
+            ->where('id', $id)
+            ->delete();
+
+        return Redirect::route('admin.candidatures');
+    }
+
 }
