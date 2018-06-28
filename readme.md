@@ -1,6 +1,6 @@
 # LO07 - Projet nounou
 
-Projet réalisé dans le cadre du l'UE LO07.
+Projet réalisé dans le cadre du l'UE LO07 à l'UTT.
 
 ## Installation du projet
 
@@ -23,7 +23,7 @@ DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=nounou
 DB_USERNAME=root
-DB_PASSWORD=
+DB_PASSWORD=secret
 ```
 
 ## Enjoy
