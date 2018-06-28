@@ -75,7 +75,7 @@ class RegisterController extends Controller
             'tel' => $data['tel'],
             'dateDeNaissance' => $data['dateDeNaissance'],
             'password' => Hash::make($data['password']),
-            'photo' => Storage::disk('img')->put('img2.png', $data['photo'])
+            'photo' => Storage::disk('img')->put('storage/ressources/assets/img/', $data['photo'])
         ]); 
         }  
         else {

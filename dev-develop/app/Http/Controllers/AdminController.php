@@ -123,7 +123,7 @@ class AdminController extends Controller
     {      
         DB::table('users')
             ->where('id', $id)
-            ->update(['valide' => 1]);
+            ->update(['valide' => '1']);
 
         return Redirect::route('admin.candidatures');
     }

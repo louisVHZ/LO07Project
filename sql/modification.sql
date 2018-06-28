@@ -1,1 +1,0 @@
-ALTER TABLE `users` ADD `valide` TINYINT(1) NULL DEFAULT '0' AFTER `role`; 
