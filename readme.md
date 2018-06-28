@@ -2,6 +2,7 @@
 
 Projet réalisé dans le cadre du l'UE LO07 à l'UTT.
 
+
 ## Installation du projet
 
 * Clonez le git : `git clone https://github.com/louisVHZ/LO07Project.git`.
@@ -13,6 +14,7 @@ Projet réalisé dans le cadre du l'UE LO07 à l'UTT.
 * Ouvrez un terminal dans le dossier racine du projet `dev-develop/` et tapez la commande `composer update`.
 
 * Installez WAMP/LAMP/MAMP puis ajoutez un "Virtual Host" qui pointe sur `dev-develop/public/`.
+
 
 ## Configuration du projet
 
@@ -26,6 +28,20 @@ DB_USERNAME=root
 DB_PASSWORD=secret
 ```
 
-## Enjoy
+* Accédez au projet en allant sur le "Vitual Host" qui vous avez créé précédemment.
 
-Vous pouvez désormais accéder au projet grâce au "Virtual Host" qui vous avez créé précédemment.
+
+## Laravel
+
+* Les routes se situent dans le fichier `dev-develop/routes/web.php`
+
+* Les controleurs se situent dans le dossier `dev-develop/app/Http/Controllers/`
+
+* Les modèles se situent dans le dossier `dev-develop/app/`
+
+* Les vues se situent dans le dossier `dev-develop/resources/views/`
+
+
+___
+
+Author : Louis VAUCHEZ & Kévin LEMAIRE
