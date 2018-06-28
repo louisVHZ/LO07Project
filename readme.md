@@ -44,4 +44,4 @@ DB_PASSWORD=secret
 
 ___
 
-Author : Louis VAUCHEZ & Kévin LEMAIRE
+**Author :** Louis VAUCHEZ & Kévin LEMAIRE
